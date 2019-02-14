@@ -9,6 +9,7 @@ public class Splitter {
 
 	private String collectionSplitter;
 	private String mapSplitter;
+	
 
 	private Splitter(String colS, String mapS) {
 		this.collectionSplitter = colS;
