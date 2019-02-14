@@ -2,7 +2,10 @@ package com.typeconverter;
 
 public final class TypeCast {
 
+	private Splitter splitter = Splitter.DEFAULT;
+
 	private TypeCast() {
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -32,7 +35,9 @@ public final class TypeCast {
 		return new TypeCast();
 	}
 
-	public static void main(String[] args) {
-		System.out.println(Integer.class.isPrimitive());
+	public TypeCast withSplitter(Splitter splitter) {
+		this.splitter = splitter;
+		return this;
 	}
+
 }

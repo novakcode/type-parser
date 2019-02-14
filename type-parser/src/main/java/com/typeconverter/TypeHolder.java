@@ -10,6 +10,7 @@ public class TypeHolder {
 
 	private TypeHolder(TypeProcessor processor, TypeCast caster) {
 		this.processor = processor;
+		this.splitter = caster.getSplitter();
 		this.caster = caster;
 	}
 

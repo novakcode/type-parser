@@ -1,12 +1,12 @@
 package com.typeconverter;
 
-import com.typeconverter.Parsers.Parser.ArrayParser;
-import com.typeconverter.Parsers.Parser.CollectionParser;
-import com.typeconverter.Parsers.Parser.EnumSetParser;
-import com.typeconverter.Parsers.Parser.MapParser;
-import com.typeconverter.Parsers.SingleParser.EnumParser;
-import com.typeconverter.Parsers.SingleParser.PrimitiveParser;
-import com.typeconverter.Parsers.SingleParser.WrapperParser;
+import com.typeconverter.CollectionParsers.ArrayParser;
+import com.typeconverter.CollectionParsers.CollectionParser;
+import com.typeconverter.CollectionParsers.EnumSetParser;
+import com.typeconverter.CollectionParsers.MapParser;
+import com.typeconverter.SingleParsers.EnumParser;
+import com.typeconverter.SingleParsers.PrimitiveParser;
+import com.typeconverter.SingleParsers.WrapperParser;
 
 public enum ClassType {
 	COLLECTION(new CollectionParser()), ARRAY(new ArrayParser()), MAP(new MapParser()), PRIMITIVE(
