@@ -182,7 +182,7 @@ public class SingleParsers {
 		@Override
 		public Object parse(TypeHolder holder, String val) {
 
-			if (holder.getRaw().isEnum())
+			if (!holder.getRaw().isEnum())
 				throw new IllegalArgumentException("Can't cast class to Enum. Class not enum.");
 
 			Class<Enum<?>> enumClazz = holder.getRaw();
