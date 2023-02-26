@@ -15,7 +15,7 @@ public class TypeHolder {
 	}
 
 	public static TypeHolder prepare(Type type, TypeCast caster) {
-		return new TypeHolder(new TypeProcessor(type), caster);
+		return new TypeHolder(TypeProcessor.getProcessedClass(type), caster);
 	}
 
 	public Object parse(Class<?> cl, String val) {
