@@ -28,27 +28,22 @@ public class TypeProcessor {
 		
 	}
 
-	public static void getProcessedClass(Type type) throws ClassNotFoundException {
-
+	public TypeProcessor getProcessedClass(Type type) throws ClassNotFoundException {
+		Class<?> cls = null;
 		if (type instanceof Class) {
-			Class<?> c = (Class<?>) type;
-			classType = c.isArray() ? ARRAY : CLASS;
-			return new TypeProcessor(c);
-		}
-
-		if (type instanceof ParameterizedType) {
+			cls = (Class<?>) type;
+			classType = c.isArray() ? ARRAY : CLASS;	
+		}else if(type instanceof ParameterizedType) {
 			ParameterizedType p = (ParameterizedType) type;
-			Class<?> cl = determine(p.getRawType());
+			cls = determine(p.getRawType());
 
 			setParameters(p);
-			return new TypeProcessor(cl);
-		}
-
-		if (type instanceof GenericArrayType) {
+			
+		}else if (type instanceof GenericArrayType) {
 
 		}
 
-		return new TypeProcessor(null);
+		return new TypeProcessor(cls);
 	}
 
 	private static Class<?> determine(Type tp) {
