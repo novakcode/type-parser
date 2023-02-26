@@ -112,7 +112,7 @@ public class SingleParsers {
 			});
 
 			// Char
-			primitiveParsers.put(ClassUtil.primitives[1], new Parse() {
+			primitiveParsers.put(ClassUtil.primitives[2], new Parse() {
 
 				@Override
 				public Object parse(TypeHolder holder, String val) {
@@ -121,7 +121,7 @@ public class SingleParsers {
 			});
 
 			// Long
-			primitiveParsers.put(ClassUtil.primitives[1], new Parse() {
+			primitiveParsers.put(ClassUtil.primitives[3], new Parse() {
 
 				@Override
 				public Object parse(TypeHolder holder, String val) {
@@ -130,7 +130,7 @@ public class SingleParsers {
 			});
 
 			// Short
-			primitiveParsers.put(ClassUtil.primitives[1], new Parse() {
+			primitiveParsers.put(ClassUtil.primitives[4], new Parse() {
 
 				@Override
 				public Object parse(TypeHolder holder, String val) {
@@ -139,7 +139,7 @@ public class SingleParsers {
 			});
 
 			// Byte
-			primitiveParsers.put(ClassUtil.primitives[1], new Parse() {
+			primitiveParsers.put(ClassUtil.primitives[5], new Parse() {
 
 				@Override
 				public Object parse(TypeHolder holder, String val) {
@@ -148,7 +148,7 @@ public class SingleParsers {
 			});
 
 			// Bool
-			primitiveParsers.put(ClassUtil.primitives[1], new Parse() {
+			primitiveParsers.put(ClassUtil.primitives[6], new Parse() {
 
 				@Override
 				public Object parse(TypeHolder holder, String val) {
@@ -157,7 +157,7 @@ public class SingleParsers {
 			});
 
 			// Float
-			primitiveParsers.put(ClassUtil.primitives[1], new Parse() {
+			primitiveParsers.put(ClassUtil.primitives[7], new Parse() {
 
 				@Override
 				public Object parse(TypeHolder holder, String val) {
@@ -166,7 +166,7 @@ public class SingleParsers {
 			});
 
 			// String
-			primitiveParsers.put(ClassUtil.primitives[1], new Parse() {
+			primitiveParsers.put(ClassUtil.primitives[8], new Parse() {
 
 				@Override
 				public Object parse(TypeHolder holder, String val) {
