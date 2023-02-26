@@ -24,8 +24,8 @@ public class TypeProcessor {
 	private static List<Class<?>> params = new ArrayList<Class<?>>();
 	private static ClassType classType;
 
-	public TypeProcessor(Type type) {
-		
+	public TypeProcessor(Class<?> raw) {
+		this.raw = raw;
 	}
 
 	public TypeProcessor getProcessedClass(Type type) throws ClassNotFoundException {
