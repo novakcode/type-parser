@@ -43,7 +43,7 @@ public class ClassUtil {
 			return COLLECTION;
 		} else if (Map.class.isAssignableFrom(cl)) {
 			return MAP;
-		} else if (cl.isPrimitive()) {
+		} else if (ClassUtil.isPrimitive(cl)) {
 			return PRIMITIVE;
 		}
 
