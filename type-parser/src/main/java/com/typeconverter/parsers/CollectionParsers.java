@@ -1,4 +1,4 @@
-package com.typeconverter;
+package com.typeconverter.parsers;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.ParameterizedType;

@@ -1,4 +1,4 @@
-package com.typeconverter;
+package com.typeconverter.parsers;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

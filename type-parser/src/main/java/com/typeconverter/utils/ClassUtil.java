@@ -18,7 +18,7 @@ public class ClassUtil<T> {
 	public static Class<?>[][] primitives = new Class<?>[][] { { Integer.class, int.class },
 			{ Double.class, double.class }, { Character.class, char.class }, { Long.class, long.class },
 			{ Short.class, short.class }, { Byte.class, byte.class }, { Boolean.class, boolean.class },
-			{ Float.class, float.class }, { String.class } };
+			{ Float.class, float.class }, { String.class } }; 
 
 	public static boolean isPrimitive(Class<?> cl) {
 		for (Class<?>[] prims : primitives) {

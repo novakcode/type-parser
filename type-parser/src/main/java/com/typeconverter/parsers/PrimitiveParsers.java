@@ -1,4 +1,4 @@
-package com.typeconverter;
+package com.typeconverter.parsers;
 
 import static com.typeconverter.ClassUtil.primitives;
 

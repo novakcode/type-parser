@@ -1,4 +1,4 @@
-package com.typeconverter;
+package com.typeconverter.splitter;
 
 import java.util.Arrays;
 import java.util.List;
