@@ -1,28 +1,36 @@
 package com.typeconverter;
 
+import java.lang.reflect.Type;
+
 public final class TypeCast {
 
-	private Splitter splitter = Splitter.DEFAULT;
+	private Splitter splitter;
 
-	private TypeCast() {
-
+	private TypeCast(Splitter splitter) {
+		this.splitter = splitter;
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> T cast(TypeToken<T> typeToken, String val) {
-		return cast((Class<T>) typeToken.get(), val);
+
+
+	public <T> T cast(TypeToken<T> typeToken, String val) throws ClassNotFoundException {
+		return (T) cast(TypeHolder.prepare(typeToken.get(), this), val);
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> T cast(Class<T> cl, String val) {
+	public <T> T cast(Class<T> cl, String val) throws ClassNotFoundException {
 
 		return (T) cast(TypeHolder.prepare(cl, this), val);
 	}
 
+	@SuppressWarnings("unchecked")
+	public <T> T cast(Type type, String val) throws ClassNotFoundException {
+		return (T) cast(TypeHolder.prepare(type, this), val);
+	}
+
 	private Object cast(TypeHolder holder, String val) {
 
-		ClassType classType = ClassUtil.getClassType(holder.getRaw());
-
+		ClassType classType = ClassUtil.getClassType(holder.getRaw(), holder.getParameters().size() > 0);
 		Object obj = Parsers.getParser(classType).parse(holder, val);
 
 		if (obj == null)
@@ -31,13 +39,16 @@ public final class TypeCast {
 		return obj;
 	}
 
-	public static TypeCast newInstance() {
-		return new TypeCast();
+	public Splitter getSplitter() {
+		return splitter;
 	}
 
-	public TypeCast withSplitter(Splitter splitter) {
-		this.splitter = splitter;
-		return this;
+	public static TypeCast newInstance() {
+		return new TypeCast(Splitter.defaultSplitter());
+	}
+
+	public static TypeCast withSplitter(Splitter splitter) {
+		return new TypeCast(splitter);
 	}
 
 }

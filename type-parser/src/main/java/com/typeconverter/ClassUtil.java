@@ -8,11 +8,12 @@ import static com.typeconverter.ClassType.MAP;
 import static com.typeconverter.ClassType.PRIMITIVE;
 import static com.typeconverter.ClassType.WRAPPER;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Map;
 
-public class ClassUtil {
+public class ClassUtil<T> {
 
 	public static Class<?>[][] primitives = new Class<?>[][] { { Integer.class, int.class },
 			{ Double.class, double.class }, { Character.class, char.class }, { Long.class, long.class },
@@ -30,11 +31,17 @@ public class ClassUtil {
 		return false;
 	}
 
-	public static ClassType getClassType(Class<?> cl) {
+
+	public static ClassType getClassType(Class<?> cl, boolean parameterized) {
 
 		if (cl.isArray()) {
 			return ARRAY;
 		}
+
+		if (cl.getInterfaces().length > 0 && cl.getInterfaces()[0].isAssignableFrom(GenericArrayType.class)) {
+			return ClassType.GENERICARRAY;
+		}
+
 		if (cl.isEnum()) {
 			return ENUM;
 		} else if (EnumSet.class.isAssignableFrom(cl)) {
@@ -47,7 +54,7 @@ public class ClassUtil {
 			return PRIMITIVE;
 		}
 
-		return WRAPPER;
+		return parameterized ? ClassType.PTWRAPPER : WRAPPER;
 
 	}
 

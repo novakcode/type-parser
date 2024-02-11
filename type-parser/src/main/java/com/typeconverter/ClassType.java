@@ -3,14 +3,15 @@ package com.typeconverter;
 import com.typeconverter.CollectionParsers.ArrayParser;
 import com.typeconverter.CollectionParsers.CollectionParser;
 import com.typeconverter.CollectionParsers.EnumSetParser;
+import com.typeconverter.CollectionParsers.GenericArrayParser;
 import com.typeconverter.CollectionParsers.MapParser;
-import com.typeconverter.SingleParsers.EnumParser;
-import com.typeconverter.SingleParsers.PrimitiveParser;
-import com.typeconverter.SingleParsers.WrapperParser;
+import com.typeconverter.PrimitiveParsers.EnumParser;
+import com.typeconverter.PrimitiveParsers.PrimitiveParser;
 
 public enum ClassType {
-	COLLECTION(new CollectionParser()), ARRAY(new ArrayParser()), MAP(new MapParser()), PRIMITIVE(
-			new PrimitiveParser()), WRAPPER(new WrapperParser()), ENUMSET(new EnumSetParser()), ENUM(new EnumParser());
+	COLLECTION(new CollectionParser()), ARRAY(new ArrayParser()), GENERICARRAY(new GenericArrayParser()),
+	MAP(new MapParser()), PRIMITIVE(new PrimitiveParser()), PTWRAPPER(new ParameterizedWrapperParser()),
+	WRAPPER(new WrapperParser()), ENUMSET(new EnumSetParser()), ENUM(new EnumParser());
 
 	private Parse parser;
 

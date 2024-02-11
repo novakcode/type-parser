@@ -9,6 +9,7 @@ public abstract class TypeToken<T> {
 
 	public TypeToken() {
 		Type t = getClass().getGenericSuperclass();
+
 		if (!(t instanceof ParameterizedType)) {
 
 			throw new RuntimeException("Parameter missing.");

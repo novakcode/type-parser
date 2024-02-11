@@ -1,14 +1,10 @@
 package com.typeconverter;
 
-import static com.typeconverter.ClassType.*;
-
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Deque;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -21,29 +17,37 @@ import java.util.concurrent.LinkedTransferQueue;
 public class TypeProcessor {
 
 	private Class<?> raw;
-	private static List<Class<?>> params = new ArrayList<Class<?>>();
-	private static ClassType classType;
+	private List<Type> params;
 
-	public TypeProcessor(Class<?> raw) {
+	public TypeProcessor(Class<?> raw, List<Type> params) {
 		this.raw = raw;
+		this.params = params;
 	}
 
-	public TypeProcessor getProcessedClass(Type type) throws ClassNotFoundException {
+	// we get the type and if its parameterized we get params. If its a generic
+	// array we also get the parameterized component.
+	public static TypeProcessor getProcessedClass(Type type) throws ClassNotFoundException {
+
+		List<Type> params = new ArrayList<Type>();
 		Class<?> cls = null;
+
 		if (type instanceof Class) {
 			cls = (Class<?>) type;
-			classType = c.isArray() ? ARRAY : CLASS;	
-		}else if(type instanceof ParameterizedType) {
+		} else if (type instanceof ParameterizedType) {
 			ParameterizedType p = (ParameterizedType) type;
 			cls = determine(p.getRawType());
 
-			setParameters(p);
-			
-		}else if (type instanceof GenericArrayType) {
+			setParameters(params, p);
+
+		} else if (type instanceof GenericArrayType) {
+			GenericArrayType gat = (GenericArrayType) type;
+			cls = gat.getClass();
+
+			params.add(gat.getGenericComponentType());
 
 		}
 
-		return new TypeProcessor(cls);
+		return new TypeProcessor(cls, params);
 	}
 
 	private static Class<?> determine(Type tp) {
@@ -72,32 +76,18 @@ public class TypeProcessor {
 		return raw;
 	}
 
-	public List<Class<?>> getParams() {
+	public List<Type> getParams() {
 		return params;
 	}
 
-	public ClassType getType() {
-		return classType;
-	}
-
-	private static void setParameters(ParameterizedType pt) {
+	private static void setParameters(List<Type> params, ParameterizedType pt) {
 
 		for (Type t : pt.getActualTypeArguments()) {
-			if (t instanceof ParameterizedType) {
-				Type rt = ((ParameterizedType) t).getRawType();
-				if (rt instanceof Class) {
-					System.out.println((Class<?>) rt);
-				}
-			}
+
+			params.add(t);
+
 		}
 
-	}
-
-	public static void main(String[] args) throws ClassNotFoundException {
-
-		TypeProcessor proc = TypeProcessor.getProcessedClass(new TypeToken<List<List<Integer>>>() {
-		}.get());
-		System.out.println(proc.getParams());
 	}
 
 }
